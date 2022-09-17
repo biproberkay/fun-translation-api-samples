@@ -39,4 +39,15 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $('input.TextToTranslate').on('input',(function (e) {
+            var textToTranslate = document.getElementById('input.TextToTranslate').value;
+            var language = document.getElementById('select.LanguageId').value;
+            $.getJSON(
+                "//api.funtranslations.com/translate/"+sindarin+".json?text=" + input, 
+                function (data) { $('#result').append(data.contents.translated); }
+            );
+        });
+
+    </script>
 }
