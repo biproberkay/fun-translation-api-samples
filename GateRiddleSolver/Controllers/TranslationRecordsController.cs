@@ -48,7 +48,7 @@ namespace GateRiddleSolver.Controllers
         // GET: TranslationRecords/Create
         public IActionResult Create()
         {
-            ViewData["LanguageId"] = new SelectList(_context.Languages, "Id", "Id");
+            ViewData["LanguageId"] = new SelectList(_context.Languages, "Id", "Name");
             return View();
         }
 

@@ -27,6 +27,7 @@
                 <select asp-for="LanguageId" class ="form-control" asp-items="ViewBag.LanguageId"></select>
             </div>
             <div class="form-group">
+                <button type="button" id="translate" class="btn btn-secondary">Translate</button>
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -40,12 +41,14 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-        $('input.TextToTranslate').on('input',(function (e) {
-            var textToTranslate = document.getElementById('input.TextToTranslate').value;
-            var language = document.getElementById('select.LanguageId').value;
+        $('#translate').click(function() {
+            var textToTranslate = document.getElementsByName('TextToTranslate').value;
+            console.log(textToTranslate);
+            var language = $('select.LanguageId').textContent;
+            console.log(language);
             $.getJSON(
-                "//api.funtranslations.com/translate/"+sindarin+".json?text=" + input, 
-                function (data) { $('#result').append(data.contents.translated); }
+                "//api.funtranslations.com/translate/"+ language +".json?text=" + textToTranslate,
+                function (data) { $('#TranslationResult').value = (data.contents.translated); }
             );
         });
 

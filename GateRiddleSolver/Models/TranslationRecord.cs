@@ -7,7 +7,7 @@ namespace GateRiddleSolver.Models
         public int Id { get; set; }
         [Required]
         [Display(Name ="Text to translate")]
-        [MinLength(length:100, ErrorMessage ="too long text")]
+        [MaxLength(length:100, ErrorMessage ="too long text")]
         public string TextToTranslate { get; set; }
         public string? TranslationResult { get; set; }
         public int LanguageId { get; set; }
